@@ -1,66 +1,67 @@
-// Expense tracker project
+const expenses = [
+  { name: 'Rent', amount: 1200, category: 'Housing' },
+  { name: 'Groceries', amount: 320.5, category: 'Food' },
+  { name: 'Transport', amount: 95.25, category: 'Transport' },
+  { name: 'Internet', amount: 70, category: 'Utilities' },
+  { name: 'Movies', amount: 45.75, category: 'Entertainment' },
+  { name: 'Electricity', amount: 85, category: 'Utilities' }
+];
 
-const rent = 180;
-const food = 95;
-const transport = 60;
-const internet = 120;
-const entertainment = 75;
-const utilities = 90;
+function calculateTotal(expenseList) {
+  let total = 0;
 
-// Part 2 - Flag high spending
-if (rent > 100) {
-  console.log(`Rent: High Spending`);
-} else {
-  console.log(`Rent: Normal Spending`);
+  for (const expense of expenseList) {
+    total += Number(expense.amount);
+  }
+
+  const roundedTotal = Math.round((total + Number.EPSILON) * 100) / 100;
+  return `$${roundedTotal.toFixed(2)}`;
 }
 
-if (food > 100) {
-  console.log(`Food: High Spending`);
-} else {
-  console.log(`Food: Normal Spending`);
+function renderExpenses() {
+  const tableBody = document.getElementById('expense-table-body');
+  const totalAmount = document.getElementById('total-amount');
+
+  tableBody.innerHTML = '';
+
+  expenses.forEach((expense) => {
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td>${expense.name}</td>
+      <td>${expense.category}</td>
+      <td>$${Number(expense.amount).toFixed(2)}</td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+
+  totalAmount.textContent = calculateTotal(expenses);
 }
 
-if (transport > 100) {
-  console.log(`Transport: High Spending`);
-} else {
-  console.log(`Transport: Normal Spending`);
-}
+const expenseForm = document.getElementById('expense-form');
 
-if (internet > 100) {
-  console.log(`Internet: High Spending`);
-} else {
-  console.log(`Internet: Normal Spending`);
-}
+expenseForm.addEventListener('submit', (event) => {
+  event.preventDefault();
 
-if (entertainment > 100) {
-  console.log(`Entertainment: High Spending`);
-} else {
-  console.log(`Entertainment: Normal Spending`);
-}
+  const nameInput = document.getElementById('expense-name');
+  const amountInput = document.getElementById('expense-amount');
+  const categoryInput = document.getElementById('expense-category');
 
-if (utilities > 100) {
-  console.log(`Utilities: High Spending`);
-} else {
-  console.log(`Utilities: Normal Spending`);
-}
+  const newExpense = {
+    name: nameInput.value.trim(),
+    amount: Number(amountInput.value),
+    category: categoryInput.value
+  };
 
-// Part 3 - Calculate total expenses
-const expenses = [rent, food, transport, internet, entertainment, utilities];
-let totalExpenses = 0;
+  if (!newExpense.name || Number.isNaN(newExpense.amount) || newExpense.amount <= 0 || !newExpense.category) {
+    alert('Please enter a valid expense name, amount, and category.');
+    return;
+  }
 
-for (const expense of expenses) {
-  totalExpenses += expense;
-}
+  expenses.push(newExpense);
+  expenseForm.reset();
+  renderExpenses();
+});
 
-console.log(`Total Expenses: $${totalExpenses}`);
-
-// Part 4 - Budget check
-const monthlyIncome = 800;
-
-console.log(`Monthly Income: $${monthlyIncome}`);
-
-if (totalExpenses <= monthlyIncome) {
-  console.log(`Status: Within Budget`);
-} else {
-  console.log(`Status: Over Budget`);
-}
+renderExpenses();

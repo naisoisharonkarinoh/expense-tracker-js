@@ -1,10 +1,12 @@
 # Expense Tracker JS
 
-This project is a simple JavaScript expense tracker built to practice variable declarations, conditional logic, loops, and budget comparison.
+This project is a simple interactive expense tracker that stores expenses as objects, calculates totals dynamically, and re-renders the table whenever the data changes.
+
+## Open the app
+- [Open the interactive expense tracker](index.html)
 
 ## Completed this week
-- Created expense variables for six categories.
-- Checked each expense to flag high spending.
-- Stored all expense values in an array and calculated the total using a loop.
-- Compared total expenses against monthly income to determine budget status.
-- Set up a basic HTML page that loads the script for console-based output.
+- Replaced the separate expense variables with an array of expense objects.
+- Added a reusable calculation function to total all expenses and format the result to 2 decimals.
+- Created a dynamic table renderer that clears and rebuilds the page data from the array.
+- Wired up the form so the Add Expense button adds a new item and updates the table without refreshing the page.
