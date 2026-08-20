@@ -3,7 +3,8 @@
 This project is a simple interactive expense tracker that stores expenses as objects, calculates totals dynamically, and re-renders the table whenever the data changes.
 
 ## Open the app
-- [Open the interactive expense tracker](https://naisoisharonkarinoh.github.io/expense-tracker-js/)
+(https://vercel.com/karino/expense-tracker-js)
+
 
 > This opens the rendered webpage rather than the raw HTML source code.
 
