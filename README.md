@@ -1,15 +1,19 @@
 # Expense Tracker JS
 
-This project is a simple interactive expense tracker that stores expenses as objects, calculates totals dynamically, and re-renders the table whenever the data changes.
+This final project is a polished, portfolio-ready expense tracker built to demonstrate modern JavaScript fundamentals, modular code organization, and a responsive UI.
 
-## Open the app
-(https://vercel.com/karino/expense-tracker-js)
+## Live Demo
+- GitHub Pages: https://naisoisharonkarinoh.github.io/expense-tracker-js/
 
+## Features completed
+- Expense data stored as an array of objects with name, amount, and category.
+- Total calculation logic kept in a separate ES module and formatted to 2 decimal places.
+- Dynamic table rendering that clears and rebuilds the table from live array data.
+- Add Expense form wired to submit events so new entries update the interface without reloading the page.
+- Bootstrap styling applied for a cleaner, more professional appearance on desktop and smaller screens.
 
-> This opens the rendered webpage rather than the raw HTML source code.
-
-## Completed this week
-- Replaced the separate expense variables with an array of expense objects.
-- Added a reusable calculation function to total all expenses and format the result to 2 decimals.
-- Created a dynamic table renderer that clears and rebuilds the page data from the array.
-- Wired up the form so the Add Expense button adds a new item and updates the table without refreshing the page.
+## Project structure
+- index.html — main app shell and Bootstrap layout
+- script.js — app logic and event wiring
+- budget.js — exported total and render helpers
+- docs/ — static files prepared for GitHub Pages deployment
