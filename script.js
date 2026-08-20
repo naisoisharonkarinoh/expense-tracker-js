@@ -1,3 +1,5 @@
+import { calculateTotal, renderExpenses } from './budget.js';
+
 const expenses = [
   { name: 'Rent', amount: 1200, category: 'Housing' },
   { name: 'Groceries', amount: 320.5, category: 'Food' },
@@ -7,39 +9,13 @@ const expenses = [
   { name: 'Electricity', amount: 85, category: 'Utilities' }
 ];
 
-function calculateTotal(expenseList) {
-  let total = 0;
-
-  for (const expense of expenseList) {
-    total += Number(expense.amount);
-  }
-
-  const roundedTotal = Math.round((total + Number.EPSILON) * 100) / 100;
-  return `$${roundedTotal.toFixed(2)}`;
-}
-
-function renderExpenses() {
-  const tableBody = document.getElementById('expense-table-body');
-  const totalAmount = document.getElementById('total-amount');
-
-  tableBody.innerHTML = '';
-
-  expenses.forEach((expense) => {
-    const row = document.createElement('tr');
-
-    row.innerHTML = `
-      <td>${expense.name}</td>
-      <td>${expense.category}</td>
-      <td>$${Number(expense.amount).toFixed(2)}</td>
-    `;
-
-    tableBody.appendChild(row);
-  });
-
-  totalAmount.textContent = calculateTotal(expenses);
-}
-
+const tableBody = document.getElementById('expense-table-body');
+const totalAmount = document.getElementById('total-amount');
 const expenseForm = document.getElementById('expense-form');
+
+function refreshExpenses() {
+  renderExpenses(expenses, tableBody, totalAmount);
+}
 
 expenseForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -61,7 +37,8 @@ expenseForm.addEventListener('submit', (event) => {
 
   expenses.push(newExpense);
   expenseForm.reset();
-  renderExpenses();
+  refreshExpenses();
 });
 
-renderExpenses();
+refreshExpenses();
+console.log('Total expenses:', calculateTotal(expenses));
