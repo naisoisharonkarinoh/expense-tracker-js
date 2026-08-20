@@ -3,7 +3,8 @@
 This final project is a polished, portfolio-ready expense tracker built to demonstrate modern JavaScript fundamentals, modular code organization, and a responsive UI.
 
 ## Live Demo
-- GitHub Pages: https://naisoisharonkarinoh.github.io/expense-tracker-js/
+- Vercel deployment: https://expense-tracker-js.vercel.app/
+- GitHub Pages is also configured for static hosting when enabled in the repository settings.
 
 ## Features completed
 - Expense data stored as an array of objects with name, amount, and category.
